@@ -1,10 +1,8 @@
-/* eslint-disable jsx-a11y/alt-text */
-/* eslint-disable @next/next/no-img-element */
 'use client'
 
 import { ChangeEvent, DragEvent, useState } from 'react'
 import imglyRemoveBackground, { Config } from '@imgly/background-removal'
-import { DownloadCloud, UploadCloud } from 'lucide-react'
+import { UploadCloud } from 'lucide-react'
 
 import { EraseButton } from './components/erase-button'
 import { Title } from './components/title'
@@ -122,23 +120,10 @@ export default function Home() {
           </label>
         </div>
 
-        <div className='chessboard relative overflow-hidden w-80 h-80 rounded-2xl'>
-          {erasedImageURL && (
-            <>
-              <img
-                src={erasedImageURL}
-                className='w-full h-full object-cover'
-              />
-              <a
-                className='absolute cursor-pointer transition-all duration-300 inset-0 opacity-50 hover:opacity-100 bg-transparent hover:bg-black/30 inline-flex items-center justify-center text-white text-xl'
-                href={erasedImageURL}
-                download={`no-background_${uploadedFile?.name}`}
-              >
-                <DownloadCloud size='50' />
-              </a>
-            </>
-          )}
-        </div>
+        <ErasedImageBoard
+          erasedImageURL={erasedImageURL as string}
+          uploadedFileName={uploadedFile?.name as string}
+        />
       </div>
 
       <EraseButton
