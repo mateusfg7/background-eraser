@@ -4,12 +4,22 @@
 
 import { ChangeEvent, DragEvent, useState } from 'react'
 import imglyRemoveBackground, { Config } from '@imgly/background-removal'
+import {
+  Check,
+  DownloadCloud,
+  Eraser,
+  Loader2,
+  UploadCloud,
+  X,
+} from 'lucide-react'
 
 export default function Home() {
   const [uploadedFile, setUploadedFile] = useState<File>()
   const [uploadedImageObjectURL, setUploadedImageObjectURL] = useState<string>()
   const [erasedImageURL, setErasedImageURL] = useState<string>()
-  const [status, setStatus] = useState<string>()
+  const [status, setStatus] = useState<
+    undefined | 'success' | 'fail' | 'loading'
+  >()
   const [isDragOver, setIsDragOver] = useState<boolean>(false)
 
   function removeBackground() {
@@ -30,29 +40,13 @@ export default function Home() {
       imglyRemoveBackground(uploadedFile, config)
         .then((blob) => {
           setErasedImageURL(URL.createObjectURL(blob))
-          setStatus('success!')
+          setStatus('success')
         })
         .catch((error) => {
-          console.log('fail!')
           console.error(error)
-          setStatus('fail!')
+          setStatus('fail')
         })
     }
-  }
-
-  const handleDragEnter = (event: DragEvent<HTMLDivElement>) => {
-    event.preventDefault()
-    setIsDragOver(true)
-  }
-
-  const handleDragLeave = (event: DragEvent<HTMLDivElement>) => {
-    event.preventDefault()
-    setIsDragOver(false)
-  }
-
-  const handleDragOver = (event: DragEvent<HTMLDivElement>) => {
-    event.preventDefault()
-    setIsDragOver(true)
   }
 
   const handleDrop = (event: DragEvent<HTMLDivElement>) => {
@@ -72,6 +66,7 @@ export default function Home() {
 
   const handleFileUpload = (file: File) => {
     if (file) {
+      setStatus(undefined)
       setErasedImageURL(undefined)
       setUploadedFile(file)
       setUploadedImageObjectURL(URL.createObjectURL(file))
@@ -89,9 +84,18 @@ export default function Home() {
           className={`flex overflow-hidden justify-center items-center border-2 w-80 h-80 rounded-2xl text-center cursor-pointer ${
             isDragOver ? 'border-blue-800 bg-gray-200' : 'border-gray-300'
           }`}
-          onDragEnter={handleDragEnter}
-          onDragLeave={handleDragLeave}
-          onDragOver={handleDragOver}
+          onDragEnter={(event) => {
+            event.preventDefault()
+            setIsDragOver(true)
+          }}
+          onDragLeave={(event) => {
+            event.preventDefault()
+            setIsDragOver(false)
+          }}
+          onDragOver={(event) => {
+            event.preventDefault()
+            setIsDragOver(true)
+          }}
           onDrop={handleDrop}
         >
           <input
@@ -113,8 +117,9 @@ export default function Home() {
               <p>Drag and drop file here...</p>
             ) : (
               <div className='flex flex-col items-center gap-2'>
-                <p className='transition-all duration-1000 bg-gradient-to-br from-blue-800 hover:from-blue-600 to-blue-600 hover:to-blue-400 p-2 rounded-2xl text-white'>
-                  Upload file
+                <p className='transition-all inline-flex gap-1 items-center font-bold duration-1000 bg-gradient-to-br from-blue-800 hover:from-blue-600 to-blue-600 hover:to-blue-400 p-3 rounded-2xl text-white'>
+                  <UploadCloud />
+                  <span>Upload file</span>
                 </p>
                 <p>Or drop</p>
               </div>
@@ -134,27 +139,47 @@ export default function Home() {
                 href={erasedImageURL}
                 download={`no-background_${uploadedFile?.name}`}
               >
-                <span>[DOWNLOAD]</span>
+                <DownloadCloud size='50' />
               </a>
             </>
           )}
         </div>
       </div>
 
-      <div>
-        <button
-          disabled={!uploadedFile}
-          onClick={removeBackground}
-          className={`transition-all duration-1000 text-white text-lg p-3 rounded-2xl ${
-            uploadedFile
-              ? 'bg-gradient-to-br from-blue-800 hover:from-blue-600 to-blue-600 hover:to-blue-400'
-              : 'bg-neutral-500'
-          }`}
-        >
-          Erase Background
-        </button>
-        <p>{status}</p>
-      </div>
+      <button
+        disabled={!uploadedFile}
+        onClick={removeBackground}
+        className={`transition-all flex items-center gap-2 duration-1000 text-white text-xl font-bold p-3 rounded-2xl ${
+          uploadedFile
+            ? 'bg-gradient-to-br from-blue-800 hover:from-blue-600 to-blue-600 hover:to-blue-400'
+            : 'bg-neutral-500'
+        }`}
+      >
+        {!status && (
+          <>
+            <Eraser />
+            <span>Erase</span>
+          </>
+        )}
+        {uploadedFile && status === 'loading' && (
+          <>
+            <Loader2 className='animate-spin' />
+            <span>Erasing</span>
+          </>
+        )}
+        {uploadedFile && status === 'success' && (
+          <>
+            <Check />
+            <span>Erased</span>
+          </>
+        )}
+        {uploadedFile && status === 'fail' && (
+          <>
+            <X />
+            <span>Error</span>
+          </>
+        )}
+      </button>
     </main>
   )
 }
