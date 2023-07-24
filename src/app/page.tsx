@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import imglyRemoveBackground, { Config } from '@imgly/background-removal'
 
 import { Title } from './components/title'
 import { ErasedImageBoard } from './components/erased-image-board'
@@ -15,22 +14,15 @@ export default function Home() {
     undefined | 'success' | 'fail' | 'loading'
   >()
 
-  function removeBackground() {
+  async function removeBackground() {
     setErasedImageURL(undefined)
-
-    const config: Config = {
-      progress: (key, current, total) => {
-        console.log(`Downloading ${key}: ${current} of ${total}`)
-      },
-      debug: false,
-      fetchArgs: {},
-      model: 'medium',
-      proxyToWorker: true,
-    }
 
     if (uploadedFile) {
       setStatus('loading')
-      imglyRemoveBackground(uploadedFile, config)
+
+      const imglyRemoveBackground = (await import('@imgly/background-removal'))
+        .default
+      imglyRemoveBackground(uploadedFile)
         .then((blob) => {
           setErasedImageURL(URL.createObjectURL(blob))
           setStatus('success')
