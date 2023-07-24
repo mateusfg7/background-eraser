@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@imgly/background-removal':
+    specifier: ^1.0.6
+    version: 1.0.6
   '@types/node':
     specifier: 20.4.4
     version: 20.4.4
@@ -116,6 +119,10 @@ packages:
 
   /@humanwhocodes/object-schema@1.2.1:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
+    dev: false
+
+  /@imgly/background-removal@1.0.6:
+    resolution: {integrity: sha512-ExO82TiTj0HTEMsTUCQ6krCbZxgr5ao2G5ktizD3YpeRxiHMEZeH7AWDDho8mNcw8kgtjF9geHLAhiW9CQ8dUA==}
     dev: false
 
   /@jridgewell/gen-mapping@0.3.3:
