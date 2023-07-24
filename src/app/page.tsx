@@ -7,6 +7,8 @@ import imglyRemoveBackground, { Config } from '@imgly/background-removal'
 import { DownloadCloud, UploadCloud } from 'lucide-react'
 
 import { EraseButton } from './components/erase-button'
+import { Title } from './components/title'
+import { ErasedImageBoard } from './components/erased-image-board'
 
 export default function Home() {
   const [uploadedFile, setUploadedFile] = useState<File>()
@@ -70,9 +72,7 @@ export default function Home() {
 
   return (
     <main className='flex flex-col items-center p-10 gap-8'>
-      <h1 className='text-3xl font-bold bg-gradient-to-br from-blue-800 to-blue-600 bg-clip-text text-transparent'>
-        Background Remover
-      </h1>
+      <Title />
 
       <div className='flex gap-3'>
         <div
