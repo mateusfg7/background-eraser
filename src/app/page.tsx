@@ -4,14 +4,9 @@
 
 import { ChangeEvent, DragEvent, useState } from 'react'
 import imglyRemoveBackground, { Config } from '@imgly/background-removal'
-import {
-  Check,
-  DownloadCloud,
-  Eraser,
-  Loader2,
-  UploadCloud,
-  X,
-} from 'lucide-react'
+import { DownloadCloud, UploadCloud } from 'lucide-react'
+
+import { EraseButton } from './components/erase-button'
 
 export default function Home() {
   const [uploadedFile, setUploadedFile] = useState<File>()
@@ -146,40 +141,11 @@ export default function Home() {
         </div>
       </div>
 
-      <button
-        disabled={!uploadedFile}
-        onClick={removeBackground}
-        className={`transition-all flex items-center gap-2 duration-1000 text-white text-xl font-bold p-3 rounded-2xl ${
-          uploadedFile
-            ? 'bg-gradient-to-br from-blue-800 hover:from-blue-600 to-blue-600 hover:to-blue-400'
-            : 'bg-neutral-500'
-        }`}
-      >
-        {!status && (
-          <>
-            <Eraser />
-            <span>Erase</span>
-          </>
-        )}
-        {uploadedFile && status === 'loading' && (
-          <>
-            <Loader2 className='animate-spin' />
-            <span>Erasing</span>
-          </>
-        )}
-        {uploadedFile && status === 'success' && (
-          <>
-            <Check />
-            <span>Erased</span>
-          </>
-        )}
-        {uploadedFile && status === 'fail' && (
-          <>
-            <X />
-            <span>Error</span>
-          </>
-        )}
-      </button>
+      <EraseButton
+        action={removeBackground}
+        status={status}
+        isFileUploaded={!!uploadedFile}
+      />
     </main>
   )
 }
