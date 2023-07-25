@@ -42,7 +42,7 @@ export function UploadImageBoard({
     <div
       className={`group flex h-72 w-full cursor-pointer items-center justify-center overflow-hidden rounded-2xl border-2 text-center transition-all sm:h-full ${
         isDragOver ? 'border-blue-800 bg-gray-200' : 'border-gray-300'
-      }`}
+      } ${uploadedImageObjectURL && 'chessboard'}`}
       onDragEnter={event => {
         event.preventDefault()
         setIsDragOver(true)
@@ -70,7 +70,7 @@ export function UploadImageBoard({
         {uploadedImageObjectURL ? (
           <img
             src={uploadedImageObjectURL}
-            className="h-full w-full object-cover"
+            className="h-full w-full object-contain"
           />
         ) : isDragOver ? (
           <p>Drop image here...</p>
