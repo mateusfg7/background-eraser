@@ -7,7 +7,7 @@ interface Props {
 
 export function ErasedImageBoard({ erasedImageURL, uploadedFileName }: Props) {
   return (
-    <div className="chessboard relative h-80 w-80 overflow-hidden rounded-2xl">
+    <div className="chessboard relative h-full w-full overflow-hidden rounded-2xl">
       {erasedImageURL && (
         <>
           <img src={erasedImageURL} className="h-full w-full object-cover" />

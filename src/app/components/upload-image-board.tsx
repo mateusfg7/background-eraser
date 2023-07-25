@@ -40,7 +40,7 @@ export function UploadImageBoard({
   }
   return (
     <div
-      className={`flex h-80 w-80 cursor-pointer items-center justify-center overflow-hidden rounded-2xl border-2 text-center transition-all ${
+      className={`flex h-full w-full cursor-pointer items-center justify-center overflow-hidden rounded-2xl border-2 text-center transition-all ${
         isDragOver ? 'border-blue-800 bg-gray-200' : 'border-gray-300'
       }`}
       onDragEnter={event => {
