@@ -6,6 +6,7 @@ import { Title } from './components/title'
 import { ErasedImageBoard } from './components/erased-image-board'
 import { UploadImageBoard } from './components/upload-image-board'
 import { EraseButton } from './components/erase-button'
+import { Footer } from './components/footer'
 
 export default function Home() {
   const [uploadedFile, setUploadedFile] = useState<File>()
@@ -35,27 +36,30 @@ export default function Home() {
   }
 
   return (
-    <main className="flex flex-col items-center gap-8 p-10">
-      <Title />
+    <main className="m-auto flex min-h-screen max-w-2xl flex-col justify-between py-10">
+      <div className="flex flex-col items-center gap-8">
+        <Title />
 
-      <div className="flex gap-3">
-        <UploadImageBoard
-          setStatus={setStatus}
-          setUploadedFile={setUploadedFile}
-          setErasedImageURL={setErasedImageURL}
-        />
+        <div className="flex h-80 w-full justify-center gap-2">
+          <UploadImageBoard
+            setStatus={setStatus}
+            setUploadedFile={setUploadedFile}
+            setErasedImageURL={setErasedImageURL}
+          />
 
-        <ErasedImageBoard
-          erasedImageURL={erasedImageURL as string}
-          uploadedFileName={uploadedFile?.name as string}
+          <ErasedImageBoard
+            erasedImageURL={erasedImageURL as string}
+            uploadedFileName={uploadedFile?.name as string}
+          />
+        </div>
+
+        <EraseButton
+          action={removeBackground}
+          status={status}
+          isFileUploaded={!!uploadedFile}
         />
       </div>
-
-      <EraseButton
-        action={removeBackground}
-        status={status}
-        isFileUploaded={!!uploadedFile}
-      />
+      <Footer />
     </main>
   )
 }
