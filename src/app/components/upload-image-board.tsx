@@ -10,7 +10,7 @@ interface Props {
 export function UploadImageBoard({
   setStatus,
   setErasedImageURL,
-  setUploadedFile,
+  setUploadedFile
 }: Props) {
   const [isDragOver, setIsDragOver] = useState<boolean>(false)
   const [uploadedImageObjectURL, setUploadedImageObjectURL] = useState<string>()
@@ -40,43 +40,43 @@ export function UploadImageBoard({
   }
   return (
     <div
-      className={`transition-all flex overflow-hidden justify-center items-center border-2 w-80 h-80 rounded-2xl text-center cursor-pointer ${
+      className={`flex h-80 w-80 cursor-pointer items-center justify-center overflow-hidden rounded-2xl border-2 text-center transition-all ${
         isDragOver ? 'border-blue-800 bg-gray-200' : 'border-gray-300'
       }`}
-      onDragEnter={(event) => {
+      onDragEnter={event => {
         event.preventDefault()
         setIsDragOver(true)
       }}
-      onDragLeave={(event) => {
+      onDragLeave={event => {
         event.preventDefault()
         setIsDragOver(false)
       }}
-      onDragOver={(event) => {
+      onDragOver={event => {
         event.preventDefault()
         setIsDragOver(true)
       }}
       onDrop={handleDrop}
     >
       <input
-        type='file'
-        className='hidden'
+        type="file"
+        className="hidden"
         onChange={handleFileInputChange}
-        id='fileInput'
+        id="fileInput"
       />
       <label
-        htmlFor='fileInput'
-        className='cursor-pointer flex items-center justify-center h-full w-full'
+        htmlFor="fileInput"
+        className="flex h-full w-full cursor-pointer items-center justify-center"
       >
         {uploadedImageObjectURL ? (
           <img
             src={uploadedImageObjectURL}
-            className='object-cover h-full w-full'
+            className="h-full w-full object-cover"
           />
         ) : isDragOver ? (
           <p>Drop image here...</p>
         ) : (
-          <div className='flex flex-col items-center gap-2'>
-            <p className='transition-all inline-flex gap-1 items-center font-bold duration-1000 bg-gradient-to-br from-blue-800 hover:from-blue-600 to-blue-600 hover:to-blue-400 p-3 rounded-2xl text-white'>
+          <div className="flex flex-col items-center gap-2">
+            <p className="inline-flex items-center gap-1 rounded-2xl bg-gradient-to-br from-blue-800 to-blue-600 p-3 font-bold text-white transition-all duration-1000 hover:from-blue-600 hover:to-blue-400">
               <UploadCloud />
               <span>Upload</span>
             </p>

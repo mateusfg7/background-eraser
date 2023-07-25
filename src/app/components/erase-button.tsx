@@ -11,9 +11,9 @@ export function EraseButton({ isFileUploaded, status, action }: Props) {
     <button
       disabled={!isFileUploaded}
       onClick={action}
-      className={`transition-all flex items-center gap-2 duration-1000 text-white text-xl font-bold p-3 rounded-2xl ${
+      className={`flex items-center gap-2 rounded-2xl p-3 text-xl font-bold text-white transition-all duration-1000 ${
         isFileUploaded
-          ? 'bg-gradient-to-br from-blue-800 hover:from-blue-600 to-blue-600 hover:to-blue-400'
+          ? 'bg-gradient-to-br from-blue-800 to-blue-600 hover:from-blue-600 hover:to-blue-400'
           : 'bg-neutral-500'
       }`}
     >
@@ -25,7 +25,7 @@ export function EraseButton({ isFileUploaded, status, action }: Props) {
       )}
       {isFileUploaded && status === 'loading' && (
         <>
-          <Loader2 className='animate-spin' />
+          <Loader2 className="animate-spin" />
           <span>Erasing</span>
         </>
       )}
