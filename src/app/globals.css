@@ -6,6 +6,10 @@
   body {
     @apply font-sans;
   }
+
+  a {
+    @apply transition-colors hover:text-neutral-900;
+  }
 }
 
 @layer utilities {

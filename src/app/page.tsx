@@ -6,6 +6,7 @@ import { Title } from './components/title'
 import { ErasedImageBoard } from './components/erased-image-board'
 import { UploadImageBoard } from './components/upload-image-board'
 import { EraseButton } from './components/erase-button'
+import { Footer } from './components/footer'
 
 export default function Home() {
   const [uploadedFile, setUploadedFile] = useState<File>()
@@ -35,7 +36,7 @@ export default function Home() {
   }
 
   return (
-    <main className="m-auto max-w-2xl py-10">
+    <main className="m-auto flex min-h-screen max-w-2xl flex-col justify-between py-10">
       <div className="flex flex-col items-center gap-8">
         <Title />
 
@@ -58,6 +59,7 @@ export default function Home() {
           isFileUploaded={!!uploadedFile}
         />
       </div>
+      <Footer />
     </main>
   )
 }
