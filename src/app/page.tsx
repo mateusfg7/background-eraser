@@ -23,11 +23,11 @@ export default function Home() {
       const imglyRemoveBackground = (await import('@imgly/background-removal'))
         .default
       imglyRemoveBackground(uploadedFile)
-        .then((blob) => {
+        .then(blob => {
           setErasedImageURL(URL.createObjectURL(blob))
           setStatus('success')
         })
-        .catch((error) => {
+        .catch(error => {
           console.error(error)
           setStatus('fail')
         })
@@ -35,10 +35,10 @@ export default function Home() {
   }
 
   return (
-    <main className='flex flex-col items-center p-10 gap-8'>
+    <main className="flex flex-col items-center gap-8 p-10">
       <Title />
 
-      <div className='flex gap-3'>
+      <div className="flex gap-3">
         <UploadImageBoard
           setStatus={setStatus}
           setUploadedFile={setUploadedFile}

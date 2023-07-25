@@ -7,16 +7,16 @@ interface Props {
 
 export function ErasedImageBoard({ erasedImageURL, uploadedFileName }: Props) {
   return (
-    <div className='chessboard relative overflow-hidden w-80 h-80 rounded-2xl'>
+    <div className="chessboard relative h-80 w-80 overflow-hidden rounded-2xl">
       {erasedImageURL && (
         <>
-          <img src={erasedImageURL} className='w-full h-full object-cover' />
+          <img src={erasedImageURL} className="h-full w-full object-cover" />
           <a
-            className='absolute cursor-pointer transition-all duration-300 inset-0 opacity-50 hover:opacity-100 bg-transparent hover:bg-black/30 inline-flex items-center justify-center text-white text-xl'
+            className="absolute inset-0 inline-flex cursor-pointer items-center justify-center bg-transparent text-xl text-white opacity-50 transition-all duration-300 hover:bg-black/30 hover:opacity-100"
             href={erasedImageURL}
             download={`no-background_${uploadedFileName}`}
           >
-            <DownloadCloud size='50' />
+            <DownloadCloud size="50" />
           </a>
         </>
       )}
