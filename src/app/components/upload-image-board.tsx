@@ -40,9 +40,9 @@ export function UploadImageBoard({
   }
   return (
     <div
-      className={`flex h-full w-full cursor-pointer items-center justify-center overflow-hidden rounded-2xl border-2 text-center transition-all ${
+      className={`group flex h-72 w-full cursor-pointer items-center justify-center overflow-hidden rounded-2xl border-2 text-center transition-all sm:h-full ${
         isDragOver ? 'border-blue-800 bg-gray-200' : 'border-gray-300'
-      }`}
+      } ${uploadedImageObjectURL && 'chessboard'}`}
       onDragEnter={event => {
         event.preventDefault()
         setIsDragOver(true)
@@ -70,17 +70,18 @@ export function UploadImageBoard({
         {uploadedImageObjectURL ? (
           <img
             src={uploadedImageObjectURL}
-            className="h-full w-full object-cover"
+            className="h-full w-full object-contain"
           />
         ) : isDragOver ? (
           <p>Drop image here...</p>
         ) : (
           <div className="flex flex-col items-center gap-2">
-            <p className="inline-flex items-center gap-1 rounded-2xl bg-gradient-to-br from-blue-800 to-blue-600 p-3 font-bold text-white transition-all duration-1000 hover:from-blue-600 hover:to-blue-400">
+            <p className="inline-flex items-center gap-1 rounded-2xl bg-gradient-to-br from-blue-800 to-blue-600 p-3 font-bold text-white transition-all duration-1000 hover:from-blue-600 hover:to-blue-400 group-active:from-blue-600 group-active:to-blue-400">
               <UploadCloud />
-              <span>Upload</span>
+              <span className="hidden sm:inline">Upload</span>
+              <span className="inline sm:hidden">Upload image</span>
             </p>
-            <p>Or drop image</p>
+            <p className="hidden sm:inline">Or drop image</p>
           </div>
         )}
       </label>

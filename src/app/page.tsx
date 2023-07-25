@@ -36,21 +36,32 @@ export default function Home() {
   }
 
   return (
-    <main className="m-auto flex min-h-screen max-w-2xl flex-col justify-between py-10">
+    <main className="m-auto flex min-h-screen max-w-2xl flex-col justify-between gap-24 px-4 py-10 md:px-0">
       <div className="flex flex-col items-center gap-8">
         <Title />
 
-        <div className="flex h-80 w-full justify-center gap-2">
+        <div className="flex w-full flex-col justify-center gap-2 sm:h-80 sm:flex-row">
           <UploadImageBoard
             setStatus={setStatus}
             setUploadedFile={setUploadedFile}
             setErasedImageURL={setErasedImageURL}
           />
 
-          <ErasedImageBoard
-            erasedImageURL={erasedImageURL as string}
-            uploadedFileName={uploadedFile?.name as string}
-          />
+          <div className="hidden h-full w-full sm:block">
+            <ErasedImageBoard
+              erasedImageURL={erasedImageURL as string}
+              uploadedFileName={uploadedFile?.name as string}
+            />
+          </div>
+
+          {erasedImageURL && (
+            <div className="block sm:hidden">
+              <ErasedImageBoard
+                erasedImageURL={erasedImageURL as string}
+                uploadedFileName={uploadedFile?.name as string}
+              />
+            </div>
+          )}
         </div>
 
         <EraseButton
