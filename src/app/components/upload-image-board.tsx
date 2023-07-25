@@ -40,7 +40,7 @@ export function UploadImageBoard({
   }
   return (
     <div
-      className={`flex h-72 w-full cursor-pointer items-center justify-center overflow-hidden rounded-2xl border-2 text-center transition-all sm:h-full ${
+      className={`group flex h-72 w-full cursor-pointer items-center justify-center overflow-hidden rounded-2xl border-2 text-center transition-all sm:h-full ${
         isDragOver ? 'border-blue-800 bg-gray-200' : 'border-gray-300'
       }`}
       onDragEnter={event => {
@@ -76,7 +76,7 @@ export function UploadImageBoard({
           <p>Drop image here...</p>
         ) : (
           <div className="flex flex-col items-center gap-2">
-            <p className="inline-flex items-center gap-1 rounded-2xl bg-gradient-to-br from-blue-800 to-blue-600 p-3 font-bold text-white transition-all duration-1000 hover:from-blue-600 hover:to-blue-400">
+            <p className="inline-flex items-center gap-1 rounded-2xl bg-gradient-to-br from-blue-800 to-blue-600 p-3 font-bold text-white transition-all duration-1000 hover:from-blue-600 hover:to-blue-400 group-active:from-blue-600 group-active:to-blue-400">
               <UploadCloud />
               <span className="hidden sm:inline">Upload</span>
               <span className="inline sm:hidden">Upload image</span>
