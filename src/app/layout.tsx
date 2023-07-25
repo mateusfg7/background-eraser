@@ -10,7 +10,15 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'Background Eraser'
+  title: 'Background Eraser',
+  description: 'Simple tool to erase background of any images',
+  keywords: ['tool', 'image', 'erase', 'background erase'],
+  authors: [
+    {
+      name: 'Mateus Felipe Gonçalves',
+      url: 'https://mateusf.com'
+    }
+  ]
 }
 
 export default function RootLayout({
