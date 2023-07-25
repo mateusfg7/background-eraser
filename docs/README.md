@@ -35,6 +35,11 @@ _Now go to http://localhost:3000_
 
 ### Production
 
+**Add `.env` file with [Umami ID](https://umami.is/)** *_optional configuration for analytics_
+```dotenv
+UMAMI_WEBSITE_ID=
+```
+
 **Install Packages**
 ```console
 pnpm install

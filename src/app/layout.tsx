@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import Script from 'next/script'
 
 import './globals.css'
 
@@ -28,6 +29,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <Script
+          async
+          src="https://analytics.umami.is/script.js"
+          data-website-id={process.env.UMAMI_WEBSITE_ID}
+        />
+      </head>
       <body className={inter.variable}>{children}</body>
     </html>
   )
