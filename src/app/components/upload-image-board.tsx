@@ -40,6 +40,7 @@ export function UploadImageBoard({
   }
   return (
     <div
+      title="Upload image"
       className={`group flex h-72 w-full cursor-pointer items-center justify-center overflow-hidden rounded-2xl border-2 text-center transition-all sm:h-full ${
         isDragOver
           ? 'border-blue-800 bg-neutral-200 dark:bg-neutral-900'
