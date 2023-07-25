@@ -9,12 +9,16 @@ interface Props {
 export function EraseButton({ isFileUploaded, status, action }: Props) {
   return (
     <button
-      disabled={!isFileUploaded}
+      disabled={!isFileUploaded || status === 'loading'}
       onClick={action}
       className={`flex items-center gap-2 rounded-2xl p-3 text-xl font-bold text-white transition-all duration-1000 ${
         isFileUploaded
-          ? 'bg-gradient-to-br from-blue-800 to-blue-600 hover:from-blue-600 hover:to-blue-400'
+          ? 'bg-gradient-to-br from-blue-800 to-blue-600'
           : 'bg-neutral-500'
+      } ${
+        status !== 'loading'
+          ? 'hover:from-blue-600 hover:to-blue-400'
+          : 'cursor-wait'
       }`}
     >
       {!status && (
