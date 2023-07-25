@@ -2,7 +2,7 @@ import { Bug, Copyright, Github } from 'lucide-react'
 
 export function Footer() {
   return (
-    <div className="flex justify-between gap-2 text-neutral-500">
+    <div className="grid grid-cols-2 justify-items-center gap-2 text-neutral-500 sm:flex sm:justify-between">
       <a href="https://mateusf.com" target="_blank" rel="author">
         By <span className="font-bold">Mateus Felipe</span>
       </a>
