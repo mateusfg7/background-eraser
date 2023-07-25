@@ -14,8 +14,8 @@ export function EraseButton({ isFileUploaded, status, action }: Props) {
       className={`flex items-center gap-2 rounded-2xl px-8 py-3 text-xl font-bold text-white transition-all duration-1000 sm:p-3 ${
         isFileUploaded
           ? status !== 'fail'
-            ? 'bg-gradient-to-br from-blue-800 to-blue-600'
-            : 'bg-gradient-to-br from-red-800 to-red-600'
+            ? 'bg-gradient-to-br from-blue-800 to-blue-600 dark:from-blue-700 dark:to-blue-500'
+            : 'bg-gradient-to-br from-red-800 to-red-600 dark:from-red-700 dark:to-red-500'
           : 'bg-neutral-500'
       } ${
         status !== 'loading' &&
