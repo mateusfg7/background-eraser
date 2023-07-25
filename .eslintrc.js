@@ -9,6 +9,7 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'react-hooks/exhaustive-deps': 'off',
     '@next/next/no-img-element': 'off',
+    'jsx-a11y/alt-text': 'off',
     'prettier/prettier': 'error'
   }
 }
