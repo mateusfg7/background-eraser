@@ -12,8 +12,8 @@ export default function Home() {
   const [uploadedFile, setUploadedFile] = useState<File>()
   const [erasedImageURL, setErasedImageURL] = useState<string>()
   const [status, setStatus] = useState<
-    undefined | 'success' | 'fail' | 'loading'
-  >()
+    'active' | 'fail' | 'success' | 'loading' | 'disabled'
+  >('disabled')
 
   async function removeBackground() {
     setErasedImageURL(undefined)
@@ -27,6 +27,7 @@ export default function Home() {
         .then(blob => {
           setErasedImageURL(URL.createObjectURL(blob))
           setStatus('success')
+          setTimeout(() => setStatus('active'), 5000)
         })
         .catch(error => {
           console.error(error)
@@ -64,11 +65,7 @@ export default function Home() {
           )}
         </div>
 
-        <EraseButton
-          action={removeBackground}
-          status={status}
-          isFileUploaded={!!uploadedFile}
-        />
+        <EraseButton action={removeBackground} status={status} />
       </div>
       <Footer />
     </main>

@@ -2,7 +2,9 @@ import { UploadCloud } from 'lucide-react'
 import { ChangeEvent, DragEvent, useState } from 'react'
 
 interface Props {
-  setStatus: (prop: undefined | 'success' | 'fail' | 'loading') => void
+  setStatus: (
+    prop: 'active' | 'fail' | 'success' | 'loading' | 'disabled'
+  ) => void
   setErasedImageURL: (prop: string | undefined) => void
   setUploadedFile: (prop: File | undefined) => void
 }
@@ -32,7 +34,7 @@ export function UploadImageBoard({
 
   const handleFileUpload = (file: File) => {
     if (file) {
-      setStatus(undefined)
+      setStatus('active')
       setErasedImageURL(undefined)
       setUploadedFile(file)
       setUploadedImageObjectURL(URL.createObjectURL(file))
