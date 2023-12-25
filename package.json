@@ -23,7 +23,7 @@
     "autoprefixer": "10.4.16",
     "eslint": "8.45.0",
     "eslint-config-next": "13.4.12",
-    "lucide-react": "^0.294.0",
+    "lucide-react": "^0.302.0",
     "next": "13.4.12",
     "postcss": "8.4.31",
     "react": "18.2.0",
